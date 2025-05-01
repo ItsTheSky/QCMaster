@@ -8,7 +8,7 @@
              x:DataType="questions:OneChoiceQuestionViewModel"
              x:Class="QCMaster.Views.Questions.Types.OneChoiceQuestionDisplay">
     
-    <ItemsControl ItemsSource="{Binding Choices}">
+    <ItemsControl ItemsSource="{Binding Choices}" VerticalAlignment="Center">
         
         <ItemsControl ItemsSource="{Binding Choices}">
             

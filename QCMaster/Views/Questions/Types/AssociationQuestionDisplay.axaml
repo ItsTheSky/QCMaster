@@ -1,0 +1,78 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:questions="clr-namespace:QCMaster.ViewModels.Questions"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:avalonia="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="questions:AssociationQuestionViewModel"
+             x:Class="QCMaster.Views.Questions.Types.AssociationQuestionDisplay">
+
+    <avalonia:SpacedGrid ColumnDefinitions="*,*" ColumnSpacing="20"
+                         RowDefinitions="*,Auto" RowSpacing="20" 
+                         VerticalAlignment="Center">
+
+        <!-- Left Items -->
+        <ItemsControl Grid.Row="0" Grid.Column="0" ItemsSource="{Binding LeftItems}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" Spacing="10" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="questions:AssociationItem">
+                    <Border BorderThickness="2" BorderBrush="{Binding ConnectionColor}"
+                            CornerRadius="5">
+                        <Button Content="{Binding Text}"
+                                HorizontalAlignment="Stretch"
+                                Theme="{Binding Theme}"
+                                
+                                Classes.Success="{Binding IsCorrect}"
+                                Classes.Danger="{Binding IsWrong}"
+                                
+                                IsEnabled="{Binding IsEnabled}"
+                                Command="{Binding SelectCommand}"
+                                CommandParameter="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Right Items -->
+        <ItemsControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding RightItems}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" Spacing="10" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="questions:AssociationItem">
+                    <Border BorderThickness="2" BorderBrush="{Binding ConnectionColor}"
+                            CornerRadius="5">
+                        <Button Content="{Binding Text}"
+                                HorizontalAlignment="Stretch"
+                                
+                                Classes.Success="{Binding IsCorrect}"
+                                Classes.Danger="{Binding IsWrong}"
+                                
+                                IsEnabled="{Binding IsEnabled}"
+                                Theme="{Binding Theme}"
+                                Command="{Binding SelectCommand}"
+                                CommandParameter="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                Content="Reset"
+                HorizontalAlignment="Stretch"
+                Theme="{DynamicResource SolidButton}"
+                IsEnabled="{Binding CanReset}"
+                Command="{Binding ResetCommand}" />
+
+    </avalonia:SpacedGrid>
+</UserControl>

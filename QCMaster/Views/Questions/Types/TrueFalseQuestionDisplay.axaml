@@ -1,0 +1,42 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:questions="clr-namespace:QCMaster.ViewModels.Questions"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="questions:TrueFalseQuestionViewModel"
+             x:Class="QCMaster.Views.Questions.Types.TrueFalseQuestionDisplay">
+    <StackPanel Orientation="Vertical" Spacing="10" VerticalAlignment="Center"
+                HorizontalAlignment="Stretch">
+        
+        <Grid>
+            <ToggleButton Content="Vrai"
+                          IsVisible="{Binding !DoShowResults}"
+                          HorizontalAlignment="Stretch"
+                          IsChecked="{Binding IsTrue}"/>
+            
+            <u:ToastCard Content="Vrai" IsVisible="{Binding DoShowResults}"
+                         HorizontalAlignment="Stretch"
+                         Margin="-10"
+                         NotificationType="{Binding TrueNotificationType}"
+                         ShowClose="False" 
+                         Classes.Light="{Binding TrueWasSelected}" />
+        </Grid>
+        
+        <Grid>
+            <ToggleButton Content="Faux"
+                          IsVisible="{Binding !DoShowResults}"
+                          HorizontalAlignment="Stretch"
+                          IsChecked="{Binding IsFalse}"/>
+            
+            <u:ToastCard Content="Faux" IsVisible="{Binding DoShowResults}"
+                         HorizontalAlignment="Stretch"
+                         Margin="-10"
+                         NotificationType="{Binding FalseNotificationType}"
+                         ShowClose="False" 
+                         Classes.Light="{Binding FalseWasSelected}" />
+        </Grid>
+        
+    </StackPanel>
+</UserControl>

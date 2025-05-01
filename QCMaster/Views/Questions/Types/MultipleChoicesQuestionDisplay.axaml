@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="questions:MultipleChoicesQuestionViewModel"
              x:Class="QCMaster.Views.Questions.Types.MultipleChoicesQuestionDisplay">
-    <ItemsControl ItemsSource="{Binding Choices}">
+    <ItemsControl ItemsSource="{Binding Choices}" VerticalAlignment="Center">
         
         <ItemsControl ItemsSource="{Binding Choices}">
             

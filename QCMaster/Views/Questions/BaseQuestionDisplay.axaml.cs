@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -22,6 +23,27 @@ public partial class BaseQuestionDisplay : UserControl
 
             Questions =
             [
+                new AssociationQuestionType(new Dictionary<string, string>
+                {
+                    { "France", "Paris" },
+                    { "Germany", "Berlin" },
+                    { "Italy", "Rome" },
+                    { "Spain", "Madrid" },
+                    { "United Kingdom", "London" }
+                })
+                {
+                    Question = "Match each country with its capital city",
+                },
+                new TrueFalseQuestionType()
+                {
+                    Question = "Is the sky blue?",
+                    CorrectAnswer = true,
+                },
+                new TrueFalseQuestionType()
+                {
+                    Question = "Are you fine? :(",
+                    CorrectAnswer = false,
+                },
                 new MultipleChoiceQuestionType
                 {
                     Question = "Which of the following are compiled languages?",
