@@ -1,0 +1,42 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:questions="clr-namespace:QCMaster.ViewModels.Questions"
+             xmlns:u="https://irihi.tech/ursa"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="questions:OneChoiceQuestionViewModel"
+             x:Class="QCMaster.Views.Questions.Types.OneChoiceQuestionDisplay">
+    
+    <ItemsControl ItemsSource="{Binding Choices}">
+        
+        <ItemsControl ItemsSource="{Binding Choices}">
+            
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" Spacing="4"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            
+            <ItemsControl.DataTemplates>
+                <DataTemplate x:DataType="questions:Choice">
+                    <Grid>
+                        <ToggleButton Content="{Binding Text}"
+                                      IsVisible="{Binding !ShowResults}"
+                                      HorizontalAlignment="Stretch"
+                                      IsChecked="{Binding IsChecked}"/>
+                    
+                        <u:ToastCard Content="{Binding Text}" IsVisible="{Binding ShowResults}"
+                                     HorizontalAlignment="Stretch"
+                                     Margin="-10"
+                                     NotificationType="{Binding NotificationType}"
+                                     ShowClose="False" 
+                                     Classes.Light="{Binding WasSelected}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+        </ItemsControl>
+        
+    </ItemsControl>
+</UserControl>

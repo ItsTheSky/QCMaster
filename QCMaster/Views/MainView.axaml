@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:QCMaster.ViewModels"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:iconPacks="https://github.com/MahApps/IconPacks.Avalonia"
+             xmlns:questions="clr-namespace:QCMaster.Views.Questions"
+             xmlns:avalonia="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+             x:Class="QCMaster.Views.MainView"
+             x:DataType="vm:MainViewModel">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <avalonia:SpacedGrid Margin="10" 
+                         RowDefinitions="*,Auto,Auto" RowSpacing="10">
+        
+        <questions:BaseQuestionDisplay Grid.Row="0" />
+        
+        <u:Divider Grid.Row="1" />
+
+        <u:SelectionList Grid.Row="2" HorizontalAlignment="Stretch">
+
+            <u:SelectionList.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="5" />
+                </ItemsPanelTemplate>
+            </u:SelectionList.ItemsPanel>
+
+            <u:SelectionList.Items>
+                <u:SelectionListItem IsSelected="True">
+                    <StackPanel HorizontalAlignment="Center">
+                        <iconPacks:PackIconLucide Kind="House" Width="24" Height="24" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="20">Home</TextBlock>
+                    </StackPanel>
+                </u:SelectionListItem>
+                <u:SelectionListItem>
+                    <StackPanel HorizontalAlignment="Center">
+                        <iconPacks:PackIconLucide Kind="House" Width="24" Height="24" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="20">Home</TextBlock>
+                    </StackPanel>
+                </u:SelectionListItem>
+                <u:SelectionListItem>
+                    <StackPanel HorizontalAlignment="Center">
+                        <iconPacks:PackIconLucide Kind="House" Width="24" Height="24" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="20">Home</TextBlock>
+                    </StackPanel>
+                </u:SelectionListItem>
+            </u:SelectionList.Items>
+
+        </u:SelectionList>
+
+    </avalonia:SpacedGrid>
+</UserControl>

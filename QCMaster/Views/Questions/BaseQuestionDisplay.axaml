@@ -1,0 +1,58 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:avalonia="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:questions="clr-namespace:QCMaster.ViewModels.Questions"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+             x:DataType="questions:BaseQuestionViewModel"
+             x:Class="QCMaster.Views.Questions.BaseQuestionDisplay">
+    <avalonia:SpacedGrid RowDefinitions="Auto,Auto,*,Auto,Auto,Auto" RowSpacing="5"
+                         ColumnDefinitions="*,*" ColumnSpacing="5">
+        
+        <avalonia:SpacedGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                             ColumnDefinitions="*,Auto" ColumnSpacing="5">
+            <ProgressBar HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                         Minimum="0" Maximum="1"
+                         Value="{Binding ProgressValue}"
+                         Height="5"/>
+            
+            <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                       FontWeight="SemiLight" Opacity="0.8"
+                       Text="{Binding ProgressText}"/>
+        </avalonia:SpacedGrid>
+        
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                   HorizontalAlignment="Center" TextAlignment="Center"
+                   TextWrapping="Wrap" Text="{Binding Question.Question }" />
+        
+        <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                        Content="{Binding QuestionView}"/>
+        
+        <u:Divider Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
+        
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                Classes="Success" IsVisible="{Binding !ShowingResults}"
+                Theme="{StaticResource SolidButton}"
+                HorizontalAlignment="Stretch" 
+                Command="{Binding SubmitAnswerCommand}">
+            Valider la réponse
+        </Button>
+        
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                Classes="Warning" IsVisible="{Binding ShowingResults}"
+                HorizontalAlignment="Stretch" 
+                Command="{Binding NextQuestionCommand}">
+            Question Suivante
+        </Button>
+        
+        <Button Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch">
+            Afficher une Aide
+        </Button>
+        <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Classes="Warning">
+            Passer la question
+        </Button>
+        
+    </avalonia:SpacedGrid>
+</UserControl>
